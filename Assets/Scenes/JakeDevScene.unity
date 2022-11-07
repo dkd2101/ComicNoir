@@ -430,7 +430,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerType: 3
-  multiInteract: 0
+  canInteract: 1
+  multiInteract: 1
 --- !u!4 &1889526945
 Transform:
   m_ObjectHideFlags: 0

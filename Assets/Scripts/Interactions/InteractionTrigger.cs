@@ -7,12 +7,12 @@ namespace Interactions
     public sealed class InteractionTrigger : MonoBehaviour
     {
         private InteractionEventChannel _evtChannel;
-        private bool _canInteract;
         private bool _playerInTrigger;
 
         private bool _hasInteracted;
 
         public InteractionEvents triggerType;
+        public bool canInteract = true;
         public bool multiInteract;
 
 #if UNITY_EDITOR
@@ -36,10 +36,10 @@ namespace Interactions
         {
             if (Input.GetButtonDown("Fire1")) _evtChannel.Emit(InteractionEvents.EndInteraction);
             
-            if (!(_canInteract && _playerInTrigger && Input.GetButtonDown("Interact"))) return;
+            if (!(canInteract && _playerInTrigger && Input.GetButtonDown("Interact"))) return;
             if (!multiInteract && _hasInteracted) return;
             
-            _canInteract = false;
+            canInteract = false;
             _hasInteracted = true;
             _evtChannel.Emit(triggerType);
         }
@@ -62,7 +62,7 @@ namespace Interactions
 
         private void ResetInteractable(InteractionEvents intEvent)
         {
-            if (intEvent == InteractionEvents.EndInteraction) _canInteract = true;
+            if (intEvent == InteractionEvents.EndInteraction) canInteract = true;
         }
     }
 }
