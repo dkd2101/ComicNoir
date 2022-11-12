@@ -23,23 +23,17 @@ public class testMovement : MonoBehaviour
     {
         if (_canMove)
             _rb.velocity = Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime * Vector2.right;
+        else _rb.velocity = Vector2.Lerp(_rb.velocity, Vector2.zero, 0.08f);
         // transform.position += Input.GetAxis("Horizontal") * speed * Time.deltaTime * Vector3.right;
     }
     
     private void SetInDialogue(InteractionEvents intEvent)
     {
-        switch (intEvent)
+        _canMove = intEvent switch
         {
-            case InteractionEvents.EndInteraction:
-                _canMove = true;
-                break;
-            case InteractionEvents.NextStep:
-            case InteractionEvents.MurderWeapon:
-                _canMove = false;
-                break;
-            case InteractionEvents.None:
-            default:
-                throw new ArgumentOutOfRangeException(nameof(intEvent), intEvent, null);
-        }
+            InteractionEvents.EndInteraction => true,
+            InteractionEvents.None => throw new ArgumentOutOfRangeException(nameof(intEvent), intEvent, null),
+            _ => false
+        };
     }
 }
