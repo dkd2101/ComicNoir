@@ -12,6 +12,10 @@ namespace Interactions
         EndInteraction,
         
         // Specific Interaction Triggers (interact w dead body, find specific clue, etc.)
+        [InspectorName("Clue/BloodStain")]
+        BloodStain,
+        [InspectorName("Clue/BloodSplatter")]
+        BloodSplatter,
         [InspectorName("Clue/MurderWeapon")]
         MurderWeapon
     }

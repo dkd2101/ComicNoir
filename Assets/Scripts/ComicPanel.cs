@@ -1,16 +1,19 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public struct ComicPanel
 {
-    public ComicPanelType Type;
+    public ComicPanelType type;
 
-    public ComicPanelImageFrame Frame;
-    public Sprite Image;
-    public List<ComicText> Texts; 
+    public AlignImage alignment;
+    public ImageFrame frame;
+    public Sprite image;
+    public List<ComicText> texts; 
     
-    public string Monologue;
+    public string monologue;
 }
 
 public enum ComicPanelType
@@ -19,18 +22,26 @@ public enum ComicPanelType
     Monologue
 }
 
-public enum ComicPanelImageFrame
+public enum AlignImage
+{
+    Left = -1,
+    Center = 0,
+    Right = 1
+}
+
+public enum ImageFrame
 {
     Rect,
     ShearedRect,
     Trapezoid
 }
 
+[Serializable]
 public struct ComicText
 {
     // TODO: add different bubble types later
-    public ComicTextType Type;
-    public string Text;
+    public ComicTextType type;
+    public string text;
 }
 
 public enum ComicTextType

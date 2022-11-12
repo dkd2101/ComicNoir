@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -12,9 +13,22 @@ namespace Interactions
         private bool _hasInteracted;
 
         public InteractionEvents triggerType;
-        public bool canInteract = true;
+        public bool canInteract;
         public bool multiInteract;
 
+        public List<InteractionEvents> Prereqs = new List<InteractionEvents>();
+        private Dictionary<InteractionEvents, bool> _fulfilledPrereqs = new Dictionary<InteractionEvents, bool>();
+
+#if UNITY_EDITOR
+        [SerializeField] private bool debug;
+#endif
+
+        public bool HasPrereqs => Prereqs.Count > 0;
+        private bool MetPrereq(KeyValuePair<InteractionEvents, bool> prereq) => prereq.Value;
+        public bool MeetsPrereqs => !HasPrereqs || (HasPrereqs && _fulfilledPrereqs.All(MetPrereq));
+
+        public bool CanInteract => canInteract && (multiInteract || !_hasInteracted) && MeetsPrereqs;
+        
 #if UNITY_EDITOR
         private void Awake()
         {
@@ -30,6 +44,12 @@ namespace Interactions
         {
             _evtChannel = InteractionEventChannel.Instance;
             _evtChannel.Subscribe(ResetInteractable);
+
+            foreach (var prereq in Prereqs)
+            {
+                _fulfilledPrereqs[prereq] = false;
+            }
+            canInteract = MeetsPrereqs;
         }
 
         private void Update()
@@ -46,7 +66,9 @@ namespace Interactions
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log($"collision {other.name}");
+#if UNITY_EDITOR
+            if (debug) Debug.Log($"collision {other.name}");
+#endif
             if (!other.CompareTag("Player")) return;
 
             _playerInTrigger = true;
@@ -54,7 +76,9 @@ namespace Interactions
         
         private void OnTriggerExit2D(Collider2D other)
         {
+#if UNITY_EDITOR
             Debug.Log($"end collision {other.name}");
+#endif
             if (!other.CompareTag("Player")) return;
 
             _playerInTrigger = false;
@@ -62,7 +86,8 @@ namespace Interactions
 
         private void ResetInteractable(InteractionEvents intEvent)
         {
-            if (intEvent == InteractionEvents.EndInteraction) canInteract = true;
+            if (_fulfilledPrereqs.ContainsKey(intEvent)) _fulfilledPrereqs[intEvent] = true;
+            if (intEvent == InteractionEvents.EndInteraction && MeetsPrereqs) canInteract = true;
         }
     }
 }
