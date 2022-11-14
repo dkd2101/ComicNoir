@@ -12,4 +12,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76040e5205747974894363e9cb0ce3ba, type: 3}
   m_Name: ComicStrip
   m_EditorClassIdentifier: 
-  panels: []
+  panels:
+  - type: 1
+    alignment: 0
+    frame: 0
+    image: {fileID: 0}
+    texts: []
+    monologue: 
+  - type: 1
+    alignment: 0
+    frame: 0
+    image: {fileID: 0}
+    texts: []
+    monologue: 
+  - type: 0
+    alignment: 0
+    frame: 0
+    image: {fileID: 0}
+    texts: []
+    monologue: 
+  - type: 0
+    alignment: -1
+    frame: 0
+    image: {fileID: 0}
+    texts: []
+    monologue: 
+  - type: 0
+    alignment: 0
+    frame: 0
+    image: {fileID: 0}
+    texts: []
+    monologue: 
+  - type: 0
+    alignment: 0
+    frame: 0
+    image: {fileID: 0}
+    texts:
+    - type: 0
+      text: 
+    monologue: 
+  - type: 0
+    alignment: 0
+    frame: 0
+    image: {fileID: 0}
+    texts: []
+    monologue: 
+  - type: 0
+    alignment: 0
+    frame: 0
+    image: {fileID: 0}
+    texts: []
+    monologue: 
