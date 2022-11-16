@@ -28,8 +28,8 @@ public class ComicLayoutManager : MonoBehaviour
     public void BeginNewStrip(Vector3 worldPos, ComicStrip strip)
     {
         if (_comicLayout.gameObject.activeSelf) return;
-
-        transform.position = new Vector3(worldPos.x, worldPos.y);
+        
+        transform.position = new Vector3(Mathf.Clamp(worldPos.x, -6, 6), 0);
         _comicLayout.Initialize(strip);
         _comicLayout.gameObject.SetActive(true);
     }

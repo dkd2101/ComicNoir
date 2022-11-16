@@ -17,6 +17,6 @@ public class testInteractableIndicator : MonoBehaviour
 
     void Update()
     {
-        _sr.color = _trigger.CanInteract ? Color.green : Color.white;
+        _sr.enabled = _trigger.CanInteract;
     }
 }

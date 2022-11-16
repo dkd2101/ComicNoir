@@ -12,19 +12,25 @@ namespace Interactions
         EndInteraction,
         
         // Specific Interaction Triggers (interact w dead body, find specific clue, etc.)
-        [InspectorName("Clue/BloodStain")]
-        BloodStain,
-        [InspectorName("Clue/BloodSplatter")]
-        BloodSplatter,
-        [InspectorName("Clue/BrokenWindow")]
-        BrokenWindow,
-        [InspectorName("Clue/GlassShard")]
+        [InspectorName("Clue/Body")]
+        Body,
+        [InspectorName("Clue/Bank Statement")]
+        BankStatement,
+        [InspectorName("Clue/Broken Glass Door")]
+        BrokenGlassDoor,
+        [InspectorName("Clue/Glass Shard")]
         GlassShard,
-        [InspectorName("Clue/MurderWeapon")]
-        MurderWeapon,
+        [InspectorName("Clue/Bowling Ball")]
+        BowlingBall,
+        [InspectorName("Clue/Bowling Ball Stand")]
+        BowlingBallStand,
         
         // Flavor Text Props
-        // [InspectorName("Prop/Recliner")]
-        // Recliner,
+        [InspectorName("Prop/Book")]
+        Book,
+        [InspectorName("Prop/Diary")]
+        Diary,
+        [InspectorName("Prop/Photo of Friends")]
+        FriendsPhoto,
     }
 }

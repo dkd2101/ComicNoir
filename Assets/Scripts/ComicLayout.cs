@@ -27,6 +27,13 @@ public class ComicLayout : MonoBehaviour
         _evtChannel.Subscribe(NextPanel);
     }
 
+    private void Update()
+    {
+        if (index == -1) return;
+        
+        if (Input.GetButtonDown("Interact")) NextPanel(InteractionEvents.NextStep);
+    }
+
     public void Initialize(ComicStrip strip)
     {
         _strip = new List<ComicPanel>(strip.panels);
@@ -65,6 +72,7 @@ public class ComicLayout : MonoBehaviour
             }
             _children[^1].gameObject.SetActive(false);
         }
+        NextPanel(InteractionEvents.NextStep);
     }
     
     private void Respace()
@@ -108,7 +116,10 @@ public class ComicLayout : MonoBehaviour
     public void Clear()
     {
         Debug.Log("clearing...");
+        _strip.Clear();
         foreach (Transform child in transform)
             Destroy(child.gameObject);
+        _children.Clear();
+        index = -1;
     }
 }

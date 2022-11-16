@@ -16,6 +16,8 @@ namespace Interactions
         public bool canInteract;
         public bool multiInteract;
 
+        private bool _isInteracting;
+
         public List<InteractionEvents> Prereqs = new List<InteractionEvents>();
         private Dictionary<InteractionEvents, bool> _fulfilledPrereqs = new Dictionary<InteractionEvents, bool>();
 
@@ -63,11 +65,9 @@ namespace Interactions
 
             if (!Input.GetButtonDown("Interact") || !_playerInTrigger) return;
 
-            if (!canInteract)
-            {
-                _evtChannel.Emit(InteractionEvents.NextStep);
-                return;
-            }
+            if (!MeetsPrereqs) return;
+
+            if (!canInteract) return;
             
             if (!multiInteract && _hasInteracted) return;
             
@@ -93,7 +93,7 @@ namespace Interactions
         private void OnTriggerExit2D(Collider2D other)
         {
 #if UNITY_EDITOR
-            Debug.Log($"end collision {other.name}");
+            if (debug) Debug.Log($"end collision {other.name}");
 #endif
             if (!other.CompareTag("Player")) return;
 
@@ -103,6 +103,7 @@ namespace Interactions
         private void ResetInteractable(InteractionEvents intEvent)
         {
             if (_fulfilledPrereqs.ContainsKey(intEvent)) _fulfilledPrereqs[intEvent] = true;
+            _isInteracting = (intEvent == InteractionEvents.EndInteraction);
             if (intEvent == InteractionEvents.EndInteraction && MeetsPrereqs) canInteract = true;
         }
     }
