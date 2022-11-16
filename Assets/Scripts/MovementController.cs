@@ -6,39 +6,42 @@ public class MovementController : MonoBehaviour
 {
     public float moveSpeed;
     public Rigidbody2D rb;
-    private float initialScale;
     Vector2 movement;
     private Animator playerAnim;
+    
+    // For mapping y position [-5, 5] to a nice player scale
+    [SerializeField] private AnimationCurve _playerScale;
+    private float _playerScaleOffset;
 
     private void Start()
     {
-        this.initialScale = this.transform.localScale.x;
         this.playerAnim = this.GetComponent<Animator>();
         this.rb = this.GetComponent<Rigidbody2D>();
+        
+        // Get initial scale for relative scaling
+        _playerScaleOffset = transform.localScale.y / _playerScale.Evaluate(WorldPosToUnit());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        movement.y = Input.GetAxis("Vertical");
+        movement.y = Input.GetAxis("Vertical") * 0.5f;
         movement.x = Input.GetAxis("Horizontal");
+        if (movement.magnitude > 1f) movement.Normalize();
+
+        ScaleSprite();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
-        this.scaleSprite();
     }
 
-    void scaleSprite()
+    private void ScaleSprite()
     {
-        float scalingFactor = this.initialScale - ((Mathf.Abs((this.transform.position.y + 4) / 13)) * 0.5f);
-
-        if (this.transform.position.y < -3)
-        {
-            scalingFactor = this.initialScale;
-        }
-
-        this.transform.localScale = new Vector3(scalingFactor, scalingFactor, scalingFactor);
+        transform.localScale = _playerScale.Evaluate(WorldPosToUnit()) *
+                               _playerScaleOffset *
+                               Vector3.one;
     }
+
+    private float WorldPosToUnit() => (transform.position.y + 5f) * 0.1f;
 }

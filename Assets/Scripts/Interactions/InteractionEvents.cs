@@ -16,7 +16,15 @@ namespace Interactions
         BloodStain,
         [InspectorName("Clue/BloodSplatter")]
         BloodSplatter,
+        [InspectorName("Clue/BrokenWindow")]
+        BrokenWindow,
+        [InspectorName("Clue/GlassShard")]
+        GlassShard,
         [InspectorName("Clue/MurderWeapon")]
-        MurderWeapon
+        MurderWeapon,
+        
+        // Flavor Text Props
+        // [InspectorName("Prop/Recliner")]
+        // Recliner,
     }
 }
