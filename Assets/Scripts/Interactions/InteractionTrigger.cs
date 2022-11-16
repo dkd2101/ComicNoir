@@ -19,6 +19,9 @@ namespace Interactions
         public List<InteractionEvents> Prereqs = new List<InteractionEvents>();
         private Dictionary<InteractionEvents, bool> _fulfilledPrereqs = new Dictionary<InteractionEvents, bool>();
 
+        private ComicLayoutManager _comicLayoutManager;
+        public ComicStrip interactComic;
+
 #if UNITY_EDITOR
         [SerializeField] private bool debug;
 #endif
@@ -50,18 +53,31 @@ namespace Interactions
                 _fulfilledPrereqs[prereq] = false;
             }
             canInteract = MeetsPrereqs;
+
+            _comicLayoutManager = ComicLayoutManager.Instance;
         }
 
         private void Update()
         {
-            if (Input.GetButtonDown("Fire1")) _evtChannel.Emit(InteractionEvents.EndInteraction);
+            // if (Input.GetButtonDown("Fire1")) _evtChannel.Emit(InteractionEvents.EndInteraction);
+
+            if (!Input.GetButtonDown("Interact") || !_playerInTrigger) return;
+
+            if (!canInteract)
+            {
+                _evtChannel.Emit(InteractionEvents.NextStep);
+                return;
+            }
             
-            if (!(canInteract && _playerInTrigger && Input.GetButtonDown("Interact"))) return;
             if (!multiInteract && _hasInteracted) return;
             
             canInteract = false;
             _hasInteracted = true;
             _evtChannel.Emit(triggerType);
+            
+            if (interactComic == null) return;
+            
+            _comicLayoutManager.BeginNewStrip(transform.position, interactComic);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

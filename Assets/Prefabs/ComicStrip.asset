@@ -13,53 +13,24 @@ MonoBehaviour:
   m_Name: ComicStrip
   m_EditorClassIdentifier: 
   panels:
+  - type: 0
+    alignment: 0
+    frame: 0
+    image: {fileID: 0}
+    textType: 0
+    text: 
+    chain: 0
+  - type: 0
+    alignment: 2
+    frame: 0
+    image: {fileID: 0}
+    textType: 0
+    text: 
+    chain: 0
   - type: 1
     alignment: 0
     frame: 0
     image: {fileID: 0}
-    texts: []
-    monologue: 
-  - type: 1
-    alignment: 0
-    frame: 0
-    image: {fileID: 0}
-    texts: []
-    monologue: 
-  - type: 0
-    alignment: 0
-    frame: 0
-    image: {fileID: 0}
-    texts: []
-    monologue: 
-  - type: 0
-    alignment: -1
-    frame: 0
-    image: {fileID: 0}
-    texts: []
-    monologue: 
-  - type: 0
-    alignment: 0
-    frame: 0
-    image: {fileID: 0}
-    texts: []
-    monologue: 
-  - type: 0
-    alignment: 0
-    frame: 0
-    image: {fileID: 0}
-    texts:
-    - type: 0
-      text: 
-    monologue: 
-  - type: 0
-    alignment: 0
-    frame: 0
-    image: {fileID: 0}
-    texts: []
-    monologue: 
-  - type: 0
-    alignment: 0
-    frame: 0
-    image: {fileID: 0}
-    texts: []
-    monologue: 
+    textType: 0
+    text: Hellooo
+    chain: 0
