@@ -11,22 +11,23 @@ public struct ComicPanel
     public AlignImage alignment;
     public ImageFrame frame;
     public Sprite image;
-    public List<ComicText> texts; 
     
-    public string monologue;
+    public ComicTextType textType;
+    public string text;
+    public bool chain;
 }
 
 public enum ComicPanelType
 {
     Image,
-    Monologue
+    Text
 }
 
 public enum AlignImage
 {
-    Left = -1,
-    Center = 0,
-    Right = 1
+    Left,
+    Center,
+    Right
 }
 
 public enum ImageFrame
