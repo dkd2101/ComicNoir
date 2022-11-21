@@ -206,4 +206,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spacing: -0.832
   panel: {fileID: 2844529550822709270, guid: 4255d189fb9e9334c960891922665c47, type: 3}
-  textBox: {fileID: 949083301128230117, guid: 777b72683e95957479d3582ffc7dc87c, type: 3}
+  monologueBox: {fileID: 949083301128230117, guid: 777b72683e95957479d3582ffc7dc87c, type: 3}
+  mcDialogueBox: {fileID: 949083301128230117, guid: f462964bfefb75249884e2fc3f8c2b59, type: 3}
+  npcDialogueBox: {fileID: 949083301128230117, guid: 0dc6fc4a8f38a9c4183b0a4c5fc64122, type: 3}

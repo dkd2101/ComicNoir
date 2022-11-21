@@ -7,10 +7,7 @@ using UnityEngine.UI;
 
 public class ComicTextBox : MonoBehaviour
 {
-    [SerializeField] private Sprite _monologueBG, _mcDialogueBG, _npcDialogueBG;
-    
     [SerializeField] private TMP_Text _text;
-    [SerializeField] private Image _background;
     
     public string Text
     {
@@ -18,22 +15,43 @@ public class ComicTextBox : MonoBehaviour
         set => _text.text = value;
     }
 
-    private ComicTextType _type;
-    public ComicTextType Type
+    public RectTransform rectTransform => (RectTransform)transform;
+    private RectTransform parent => (RectTransform)transform.parent;
+
+    private ComicPanel _textPanel;
+    public ComicPanel TextPanel
     {
-        get => _type;
+        get => _textPanel;
         set
         {
-            _type = value;
-            _background.sprite = _type switch
+            _textPanel = value;
+            Text = _textPanel.text;
+
+            var pos = rectTransform.anchoredPosition;
+            var size = rectTransform.rect.size;
+            var parentSize = parent.rect.size;
+            
+            var halfSize = size * 0.5f;
+            var offset = size * 0.25f;
+            if (_textPanel.chain)
             {
-                ComicTextType.McDialogue => _mcDialogueBG,
-                ComicTextType.NpcDialogue => _npcDialogueBG,
-                ComicTextType.Monologue or _ => _monologueBG,
-            };
+                rectTransform.anchoredPosition = _textPanel.textType switch
+                {
+                    ComicTextType.McDialogue => new Vector2(parentSize.x * 0.5f + offset.x, 0),
+                    ComicTextType.NpcDialogue => new Vector2(-parentSize.x * 0.5f - offset.x, 0),
+                    ComicTextType.Monologue or _ => new Vector2(0, -parentSize.y * 0.25f - offset.y),
+                };
+            }
+            else
+            {
+                rectTransform.anchoredPosition = _textPanel.textType switch
+                {
+                    ComicTextType.McDialogue => new Vector2(-parentSize.x * 0.5f + halfSize.x, 0),
+                    ComicTextType.NpcDialogue => new Vector2(parentSize.x * 0.5f - halfSize.x, 0),
+                    ComicTextType.Monologue or _ => rectTransform.anchoredPosition,
+                };
+            }
         }
     }
 
-    public RectTransform rectTransform => (RectTransform)transform;
-    
 }

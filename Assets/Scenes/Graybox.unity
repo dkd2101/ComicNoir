@@ -1215,7 +1215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9057598479061112349, guid: 655e08e7b6d6ce64e8ef23cb1da61810, type: 3}
       propertyPath: spacing
-      value: -0.363
+      value: 0.152
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 655e08e7b6d6ce64e8ef23cb1da61810, type: 3}
@@ -2492,7 +2492,7 @@ MonoBehaviour:
   canInteract: 0
   multiInteract: 1
   Prereqs: 03000000
-  interactComic: {fileID: 11400000, guid: 7cb0f45ede4acb74daac354bd1cf9858, type: 2}
+  interactComic: {fileID: 11400000, guid: 13d897abd16056f41a33d1131d1ecb11, type: 2}
   debug: 0
 --- !u!61 &2040211351
 BoxCollider2D:

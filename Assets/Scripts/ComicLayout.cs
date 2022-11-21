@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Interactions;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,10 +17,10 @@ public class ComicLayout : MonoBehaviour
     private List<ComicPanel> _strip;
     private int index = -1;
 
-    private List<RectTransform> _children;
+    private List<Tuple<RectTransform, bool>> _children;
 
     [SerializeField] private ComicImage panel;
-    [SerializeField] private ComicTextBox textBox;
+    [SerializeField] private ComicTextBox monologueBox, mcDialogueBox, npcDialogueBox;
 
     private void Awake()
     {
@@ -39,7 +40,7 @@ public class ComicLayout : MonoBehaviour
         _strip = new List<ComicPanel>(strip.panels);
         index = 0;
 
-        _children = new List<RectTransform>();
+        _children = new List<Tuple<RectTransform,bool>>();
         
         Debug.Log(strip);
 
@@ -61,6 +62,12 @@ public class ComicLayout : MonoBehaviour
                         frameRect.anchorMin = frameRect.anchorMax = anchor;
                         frameRect.pivot = anchor;
                         frameRect.anchoredPosition = Vector2.zero;
+                    } else if (stripPanel.alignment == AlignImage.Center)
+                    {
+                        var anchor = new Vector2(0.5f, 0.5f);
+                        frameRect.anchorMin = frameRect.anchorMax = anchor;
+                        frameRect.pivot = anchor;
+                        frameRect.anchoredPosition = Vector2.zero;
                     }
 
                     image.sprite = stripPanel.image;
@@ -72,20 +79,27 @@ public class ComicLayout : MonoBehaviour
                     var scale = Mathf.Max(frameSize.x / imageSize.x, frameSize.y / imageSize.y);
                     imageRect.transform.localScale = Vector3.one * scale;
                     
-                    _children.Add(frameRect);
+                    _children.Add(new Tuple<RectTransform, bool>(frameRect, true));
                     break;
                 
                 case ComicPanelType.Text:
-                    var t = Instantiate(textBox, transform);
-                    Debug.Log(t.name);
-                    t.Text = stripPanel.text;
-                    _children.Add(t.rectTransform);
+                    var textBox = stripPanel.textType switch
+                    {
+                        ComicTextType.McDialogue => mcDialogueBox,
+                        ComicTextType.NpcDialogue => npcDialogueBox,
+                        ComicTextType.Monologue or _ => monologueBox
+                    };
+
+                    var text = Instantiate(textBox, stripPanel.chain ? _children[^1].Item1 : transform);
+                    Debug.Log(text.name);
+                    text.TextPanel = stripPanel;
+                    _children.Add(new Tuple<RectTransform, bool>(text.rectTransform, !stripPanel.chain));
                     break;
                 
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            _children[^1].gameObject.SetActive(false);
+            _children[^1].Item1.gameObject.SetActive(false);
         }
         NextPanel(InteractionEvents.NextStep);
     }
@@ -122,11 +136,13 @@ public class ComicLayout : MonoBehaviour
             return;
         }
         
-        _children[index++].gameObject.SetActive(true);
-        Respace();
+        _children[index].Item1.gameObject.SetActive(true);
+        if (_children[index++].Item2) Respace();
     }
 
-    private IEnumerable<RectTransform> GetActiveChildren() => _children.Where(child => child.gameObject.activeSelf);
+    private IEnumerable<RectTransform> GetActiveChildren() => _children
+        .Where(child => child.Item1.gameObject.activeSelf && child.Item2)
+        .Select(child => child.Item1);
 
     public void Clear()
     {

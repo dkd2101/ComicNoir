@@ -68,6 +68,11 @@ namespace Editor
                     var textRect = new Rect(position.x, yPos, position.width, EditorGUI.GetPropertyHeight(textProp));
                     textProp.stringValue = EditorGUI.TextArea(textRect, textProp.stringValue);
                     yPos += EditorGUI.GetPropertyHeight(textProp) + Spacing * 2;
+                    
+                    var chainProp = property.FindPropertyRelative("chain");
+                    var chainRect = new Rect(position.x, yPos, position.width, EditorGUI.GetPropertyHeight(chainProp));
+                    chainProp.boolValue = EditorGUI.Toggle(chainRect, chainProp.displayName, chainProp.boolValue);
+                    yPos += EditorGUI.GetPropertyHeight(chainProp) + Spacing * 2;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -97,7 +102,11 @@ namespace Editor
                 case ComicPanelType.Text:
                     var textTypeProp = property.FindPropertyRelative("textType");
                     var textProp = property.FindPropertyRelative("text");
-                    return height + EditorGUI.GetPropertyHeight(textTypeProp) + EditorGUI.GetPropertyHeight(textProp) + Spacing * 6;
+                    var chainProp = property.FindPropertyRelative("chain");
+                    return height + Spacing * 8 +
+                           EditorGUI.GetPropertyHeight(textTypeProp) +
+                           EditorGUI.GetPropertyHeight(textProp) +
+                           EditorGUI.GetPropertyHeight(chainProp);
                 default:
                     return base.GetPropertyHeight(property, label);
             }

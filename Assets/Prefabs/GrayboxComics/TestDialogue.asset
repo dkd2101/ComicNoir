@@ -10,34 +10,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76040e5205747974894363e9cb0ce3ba, type: 3}
-  m_Name: BodyInteract
+  m_Name: TestDialogue
   m_EditorClassIdentifier: 
   panels:
   - type: 0
-    alignment: 1
+    alignment: 0
     frame: 0
-    image: {fileID: 2083335853, guid: d04d334b19c314d9497df0ce49bdd210, type: 3}
-    textType: 0
-    text: Should look for Murder Weapons too...
+    image: {fileID: 21300000, guid: daa6196b50be0d94eacf11912962b619, type: 3}
+    textType: 1
+    text: Well, you must have suspected something was up!
     chain: 0
   - type: 1
     alignment: 0
     frame: 0
     image: {fileID: 0}
-    textType: 0
-    text: Hmm... that doesn't look good.
+    textType: 1
+    text: So, what happened?
+    chain: 1
+  - type: 0
+    alignment: 2
+    frame: 0
+    image: {fileID: -2013240438, guid: 9d32e74627be30d48b18bbaaada482e9, type: 3}
+    textType: 1
+    text: Well, you must have suspected something was up!
+    chain: 0
+  - type: 1
+    alignment: 0
+    frame: 0
+    image: {fileID: 0}
+    textType: 2
+    text: Honestly... I have no idea.
     chain: 1
   - type: 1
     alignment: 0
     frame: 0
     image: {fileID: 0}
-    textType: 0
-    text: Gotta find potential motives...
-    chain: 0
-  - type: 1
-    alignment: 0
-    frame: 0
-    image: {fileID: 0}
-    textType: 0
-    text: Should look for Murder Weapons too...
+    textType: 1
+    text: Well, you must have suspected something was up!
     chain: 0
