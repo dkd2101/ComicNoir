@@ -64,12 +64,8 @@ public class ComicLayout : MonoBehaviour
                     }
 
                     image.sprite = stripPanel.image;
-                    Debug.Log(imageRect.rect.size);
-                    Debug.Log($"{imageRect.rect.width}, {imageRect.rect.height}");
                     image.SetNativeSize();
                     image.preserveAspect = true;
-                    Debug.Log(imageRect.rect.size);
-                    Debug.Log($"{imageRect.rect.width}, {imageRect.rect.height}");
 
                     var frameSize = frameRect.rect.size;
                     var imageSize = imageRect.rect.size;
