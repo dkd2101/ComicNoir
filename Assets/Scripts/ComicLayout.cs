@@ -18,7 +18,7 @@ public class ComicLayout : MonoBehaviour
 
     private List<RectTransform> _children;
 
-    [SerializeField] private Image panel;
+    [SerializeField] private ComicImage panel;
     [SerializeField] private ComicTextBox textBox;
 
     private void Awake()
@@ -50,14 +50,33 @@ public class ComicLayout : MonoBehaviour
             {
                 case ComicPanelType.Image:
                     var i = Instantiate(panel, (RectTransform)transform);
+                    var frame = i.Frame;
+                    var frameRect = frame.rectTransform;
+                    var image = i.Panel;
+                    var imageRect = image.rectTransform;
+                    
                     if (stripPanel.alignment == AlignImage.Right)
                     {
                         var anchor = new Vector2(1, 0.5f);
-                        i.rectTransform.anchorMin = i.rectTransform.anchorMax = anchor;
-                        i.rectTransform.pivot = anchor;
-                        i.rectTransform.anchoredPosition = Vector2.zero;
+                        frameRect.anchorMin = frameRect.anchorMax = anchor;
+                        frameRect.pivot = anchor;
+                        frameRect.anchoredPosition = Vector2.zero;
                     }
-                    _children.Add(i.rectTransform);
+
+                    image.sprite = stripPanel.image;
+                    Debug.Log(imageRect.rect.size);
+                    Debug.Log($"{imageRect.rect.width}, {imageRect.rect.height}");
+                    image.SetNativeSize();
+                    image.preserveAspect = true;
+                    Debug.Log(imageRect.rect.size);
+                    Debug.Log($"{imageRect.rect.width}, {imageRect.rect.height}");
+
+                    var frameSize = frameRect.rect.size;
+                    var imageSize = imageRect.rect.size;
+                    var scale = Mathf.Max(frameSize.x / imageSize.x, frameSize.y / imageSize.y);
+                    imageRect.transform.localScale = Vector3.one * scale;
+                    
+                    _children.Add(frameRect);
                     break;
                 
                 case ComicPanelType.Text:

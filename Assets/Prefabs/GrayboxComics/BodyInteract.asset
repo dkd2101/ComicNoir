@@ -34,3 +34,10 @@ MonoBehaviour:
     textType: 0
     text: Should look for Murder Weapons too...
     chain: 0
+  - type: 0
+    alignment: 0
+    frame: 0
+    image: {fileID: 2083335853, guid: d04d334b19c314d9497df0ce49bdd210, type: 3}
+    textType: 0
+    text: Should look for Murder Weapons too...
+    chain: 0
