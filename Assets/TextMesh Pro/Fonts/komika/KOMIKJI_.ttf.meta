@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 382dbab7ab9a95b4d932aa92e9354330
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Komika Jam
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7375d94b94945b047a3bdf700f13e8c2, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
