@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76040e5205747974894363e9cb0ce3ba, type: 3}
   m_Name: TestDialogue
   m_EditorClassIdentifier: 
+  isDialogue: 1
   panels:
   - type: 0
     alignment: 0
@@ -45,6 +46,34 @@ MonoBehaviour:
     alignment: 0
     frame: 0
     image: {fileID: 0}
+    textType: 0
+    text: She must be lying.
+    chain: 0
+  - type: 1
+    alignment: 0
+    frame: 0
+    image: {fileID: 0}
     textType: 1
     text: Well, you must have suspected something was up!
+    chain: 0
+  - type: 1
+    alignment: 0
+    frame: 0
+    image: {fileID: 0}
+    textType: 0
+    text: He was missing for over a week, something's off.
+    chain: 0
+  - type: 1
+    alignment: 0
+    frame: 0
+    image: {fileID: 0}
+    textType: 0
+    text: He was missing for over a week, something's off.
+    chain: 0
+  - type: 1
+    alignment: 0
+    frame: 0
+    image: {fileID: 0}
+    textType: 0
+    text: He was missing for over a week, something's off.
     chain: 0

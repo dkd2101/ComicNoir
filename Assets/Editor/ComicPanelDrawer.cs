@@ -44,7 +44,7 @@ namespace Editor
                 case ComicPanelType.Image:
                     var alignProp = property.FindPropertyRelative("alignment");
                     var alignRect = new Rect(position.x, yPos, position.width, EditorGUI.GetPropertyHeight(alignProp));
-                    alignProp.enumValueIndex = (int)(object) EditorGUI.EnumPopup(alignRect, alignProp.displayName, (AlignImage)alignProp.enumValueIndex);
+                    alignProp.enumValueIndex = (int)(object) EditorGUI.EnumPopup(alignRect, alignProp.displayName, (Alignment)alignProp.enumValueIndex);
                     yPos += EditorGUI.GetPropertyHeight(alignProp) + Spacing * 2;
                     
                     var imageProp = property.FindPropertyRelative("image");

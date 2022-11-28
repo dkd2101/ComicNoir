@@ -28,11 +28,12 @@ public class ComicTextBox : MonoBehaviour
             Text = _textPanel.text;
 
             var pos = rectTransform.anchoredPosition;
-            var size = rectTransform.rect.size;
+            var rect = rectTransform.rect;
+            var size = rect.size;
             var parentSize = parent.rect.size;
             
-            var halfSize = size * 0.5f;
-            var offset = size * 0.25f;
+            var halfSize = rect.center;
+            var offset = halfSize * 0.5f;
             if (_textPanel.chain)
             {
                 rectTransform.anchoredPosition = _textPanel.textType switch

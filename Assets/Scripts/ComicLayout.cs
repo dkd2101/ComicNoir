@@ -2,22 +2,32 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Interactions;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class ComicLayout : MonoBehaviour
 {
+    private const float NoDialogueScale = 0.6f;
+    
     private InteractionEventChannel _evtChannel;
     
     [SerializeField, Range(-1f, 1f)] private float spacing = 0.25f;
+
+    private RectTransform _rectTransform;
+    private Rect _layoutRect;
 
     private List<ComicPanel> _strip;
     private int index = -1;
 
     private List<Tuple<RectTransform, bool>> _children;
+    private RectTransform leftImage, rightImage;
+    private Alignment monologueAlignment;
 
     [SerializeField] private ComicImage panel;
     [SerializeField] private ComicTextBox monologueBox, mcDialogueBox, npcDialogueBox;
@@ -26,6 +36,9 @@ public class ComicLayout : MonoBehaviour
     {
         _evtChannel = InteractionEventChannel.Instance;
         _evtChannel.Subscribe(NextPanel);
+
+        _rectTransform = (RectTransform)transform;
+        _layoutRect = _rectTransform.rect;
     }
 
     private void Update()
@@ -39,70 +52,134 @@ public class ComicLayout : MonoBehaviour
     {
         _strip = new List<ComicPanel>(strip.panels);
         index = 0;
+        monologueAlignment = Alignment.Center;
 
         _children = new List<Tuple<RectTransform,bool>>();
         
         Debug.Log(strip);
+        
+        _strip.ForEach(InitializePanel(strip.isDialogue));
+        
+        NextPanel(InteractionEvents.NextStep);
+    }
 
-        foreach (var stripPanel in _strip)
+    private Action<ComicPanel> InitializePanel(bool isDialogue) => stripPanel =>
         {
             Debug.Log(stripPanel.type);
+
             switch (stripPanel.type)
             {
                 case ComicPanelType.Image:
-                    var i = Instantiate(panel, (RectTransform)transform);
-                    var frame = i.Frame;
-                    var frameRect = frame.rectTransform;
-                    var image = i.Panel;
-                    var imageRect = image.rectTransform;
-                    
-                    if (stripPanel.alignment == AlignImage.Right)
-                    {
-                        var anchor = new Vector2(1, 0.5f);
-                        frameRect.anchorMin = frameRect.anchorMax = anchor;
-                        frameRect.pivot = anchor;
-                        frameRect.anchoredPosition = Vector2.zero;
-                    } else if (stripPanel.alignment == AlignImage.Center)
-                    {
-                        var anchor = new Vector2(0.5f, 0.5f);
-                        frameRect.anchorMin = frameRect.anchorMax = anchor;
-                        frameRect.pivot = anchor;
-                        frameRect.anchoredPosition = Vector2.zero;
-                    }
-
-                    image.sprite = stripPanel.image;
-                    image.SetNativeSize();
-                    image.preserveAspect = true;
-
-                    var frameSize = frameRect.rect.size;
-                    var imageSize = imageRect.rect.size;
-                    var scale = Mathf.Max(frameSize.x / imageSize.x, frameSize.y / imageSize.y);
-                    imageRect.transform.localScale = Vector3.one * scale;
-                    
-                    _children.Add(new Tuple<RectTransform, bool>(frameRect, true));
+                    _children.Add(new Tuple<RectTransform, bool>(CreateImagePanel(stripPanel, isDialogue), true));
                     break;
-                
+
                 case ComicPanelType.Text:
-                    var textBox = stripPanel.textType switch
-                    {
-                        ComicTextType.McDialogue => mcDialogueBox,
-                        ComicTextType.NpcDialogue => npcDialogueBox,
-                        ComicTextType.Monologue or _ => monologueBox
-                    };
-
-                    var text = Instantiate(textBox, stripPanel.chain ? _children[^1].Item1 : transform);
-                    Debug.Log(text.name);
-                    text.TextPanel = stripPanel;
-                    _children.Add(new Tuple<RectTransform, bool>(text.rectTransform, !stripPanel.chain));
+                    CreateTextPanel(stripPanel, isDialogue);
                     break;
-                
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             _children[^1].Item1.gameObject.SetActive(false);
-        }
-        NextPanel(InteractionEvents.NextStep);
+        };
+
+    private RectTransform CreateImagePanel(ComicPanel imagePanel, bool isDialogue)
+    {
+        var i = Instantiate(panel, (RectTransform)transform);
+        var frame = i.Frame;
+        var frameRect = frame.rectTransform;
+        var image = i.Panel;
+        var imageRect = image.rectTransform;
+
+        const float scaling = NoDialogueScale * 0.5f;
+        var anchor = imagePanel.alignment switch {
+            Alignment.Left => new Vector2(isDialogue ? 0 : 0.5f - scaling, 0.5f),
+            Alignment.Center => new Vector2(0.5f, 0.5f),
+            Alignment.Right => new Vector2(isDialogue ? 1 : 0.5f + scaling, 0.5f),
+            _ => throw new ArgumentOutOfRangeException()
+        };
+        frameRect.anchorMin = frameRect.anchorMax = anchor;
+        frameRect.pivot = anchor;
+        frameRect.anchoredPosition = Vector2.zero;
+
+        image.sprite = imagePanel.image;
+        image.SetNativeSize();
+        image.preserveAspect = true;
+
+        var frameSize = frameRect.rect.size;
+        var imageSize = imageRect.rect.size;
+        var scale = Mathf.Max(frameSize.x / imageSize.x, frameSize.y / imageSize.y);
+        imageRect.transform.localScale = Vector3.one * scale;
+        
+        return frameRect;
     }
+
+    private void CreateTextPanel(ComicPanel textPanel, bool isDialogue)
+    {
+        var textBox = textPanel.textType switch
+        {
+            ComicTextType.McDialogue => mcDialogueBox,
+            ComicTextType.NpcDialogue => npcDialogueBox,
+            ComicTextType.Monologue or _ => monologueBox
+        };
+        
+        var text = Instantiate(textBox, transform);
+        Debug.Log(text.name);
+        text.Text = textPanel.text;
+
+        var rectTransform = text.rectTransform;
+        var layoutSize = new Vector2(((RectTransform)transform).rect.size.x, 0) * (isDialogue ? 0.5f : NoDialogueScale);
+        
+        var pos = rectTransform.anchoredPosition;
+        var rect = rectTransform.rect;
+        var size = rect.size;
+            
+        var halfSize = size * 0.5f;
+        var quarterSize = halfSize * 0.5f;
+        
+        rectTransform.anchoredPosition = textPanel.textType switch
+        {
+            ComicTextType.NpcDialogue => new Vector2(quarterSize.x, 0),
+            ComicTextType.McDialogue or ComicTextType.Monologue or _ => new Vector2(-quarterSize.x, 0),
+            // ComicTextType.Monologue or _ => new Vector2(0, -parentSize.y * 0.25f - offset.y),
+        };
+
+        if (textPanel.textType == ComicTextType.Monologue)
+        {
+            if (isDialogue)
+            {
+                rectTransform.anchoredPosition = Vector2.right * monologueAlignment switch
+                {
+                    Alignment.Left => -layoutSize.x + halfSize.x,
+                    Alignment.Center => -layoutSize.x * 0.5f,
+                    Alignment.Right => -halfSize.x,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+            }
+            else
+            {
+                rectTransform.anchoredPosition = Vector2.right * monologueAlignment switch
+                {
+                    Alignment.Left => -layoutSize.x * 0.5f + halfSize.x,
+                    Alignment.Center => 0,
+                    Alignment.Right => layoutSize.x * 0.5f - halfSize.x,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+            }
+            NextMonologueAlignment();
+        }
+        
+        if (textPanel.chain) rectTransform.SetParent(_children[^1].Item1);
+        
+        _children.Add(new Tuple<RectTransform, bool>(rectTransform, !textPanel.chain));
+    }
+    
+    private void NextMonologueAlignment() => monologueAlignment = monologueAlignment switch {
+        Alignment.Left or Alignment.Center => Alignment.Right,
+        Alignment.Right => Alignment.Left,
+        _ => throw new ArgumentOutOfRangeException()
+    };
     
     private void Respace()
     {
