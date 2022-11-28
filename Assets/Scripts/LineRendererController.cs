@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(LineRenderer))]
 public class LineRendererController : MonoBehaviour
 {
     private Transform _evidence1, _evidence2;

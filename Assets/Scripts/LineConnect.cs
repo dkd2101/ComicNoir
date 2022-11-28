@@ -9,7 +9,7 @@ public class LineConnect : MonoBehaviour
 
     private LineRenderer drawer;
 
-    public static UnityEvent<Transform> selectItem;
+    public static readonly UnityEvent<Transform> selectItem = new UnityEvent<Transform>();
 
     [SerializeField] private LineRenderer connectionPreview;
 
