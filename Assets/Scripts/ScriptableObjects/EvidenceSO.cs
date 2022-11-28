@@ -18,8 +18,8 @@ public class EvidenceSO : ScriptableObject
     //this represented the current "connections" the player has made to this evidence
     // may need a add function for connected_evidence
     [SerializeField]
-    List<EvidenceSO> connected_evidence;
+    public List<EvidenceSO> connected_evidence;
 
     [SerializeField]
-    List<Conditions> conclusions;
+    public List<Conditions> conclusions;
 }
