@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DragDrop : MonoBehaviour
 {
-    private bool isDrag;
+    private bool isDrag = true;
+    public UnityEvent onClick;
 
     private bool flag;
     // Start is called before the first frame update
@@ -36,6 +38,12 @@ public class DragDrop : MonoBehaviour
         } else
         {
             //code for connecting
+            onClick.Invoke();
         }
+    }
+
+    public void setDrag()
+    {
+        isDrag = !isDrag;
     }
 }

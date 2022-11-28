@@ -21,8 +21,8 @@ public class LineConnect : MonoBehaviour
         drawer.SetVertexCount(2);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+
+    void UpdateLines()
     {
         for(int i = 0; i < connectedObjects.Count; i++)
         {
