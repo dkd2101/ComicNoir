@@ -13,13 +13,13 @@ public class Evidence : MonoBehaviour
          
     }
 
-    void connectEvidence(EvidenceSO evidence)
+    public void connectEvidence(EvidenceSO evidence)
     {
         this.evidence.connected_evidence.Add(evidence);
         evidence.connected_evidence.Add(this.evidence);
     }
 
-    void disconnectEvidence(EvidenceSO evidence)
+    public void disconnectEvidence(EvidenceSO evidence)
     {
         this.evidence.connected_evidence.Remove(evidence);
         evidence.connected_evidence.Remove(this.evidence);

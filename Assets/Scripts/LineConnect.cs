@@ -22,8 +22,17 @@ public class LineConnect : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        for(int i = 0; i < connectedObjects.Count; i++)
+        {
+            if(i+1 < connectedObjects.Count)
+            {
+                pointOne = connectedObjects[i];
+                pointTwo = connectedObjects[i + 1];
+                drawer.SetPosition(0, pointOne.transform.position);
+                drawer.SetPosition(1, pointTwo.transform.position);
+            }
+        }
     }
 }
