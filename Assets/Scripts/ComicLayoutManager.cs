@@ -29,7 +29,7 @@ public class ComicLayoutManager : MonoBehaviour
     {
         if (_comicLayout.gameObject.activeSelf) return;
         
-        transform.position = new Vector3(Mathf.Clamp(worldPos.x, -6, 6), 0);
+        transform.position = new Vector3(Mathf.Clamp(worldPos.x, -4, 4), 0);
         _comicLayout.Initialize(strip);
         _comicLayout.gameObject.SetActive(true);
     }

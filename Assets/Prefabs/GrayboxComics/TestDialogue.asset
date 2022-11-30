@@ -31,7 +31,7 @@ MonoBehaviour:
   - type: 0
     alignment: 2
     frame: 0
-    image: {fileID: -2013240438, guid: 9d32e74627be30d48b18bbaaada482e9, type: 3}
+    image: {fileID: 443890368, guid: 9ccfd5a1da2b6d942bbde912a78999bb, type: 3}
     textType: 1
     text: Well, you must have suspected something was up!
     chain: 0
