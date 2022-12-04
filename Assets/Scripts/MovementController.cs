@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,8 @@ public class MovementController : MonoBehaviour
     private int _animFrame;
     private Sprite Idle => _walkCycle.First();
 
+    [SerializeField] private ParticleSystem _spideySense;
+    
     private bool _canMove = true;
 
     private void Start()
@@ -64,7 +67,17 @@ public class MovementController : MonoBehaviour
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.deltaTime));
     }
 
-    private void SetCanMove(InteractionEvents evt) => _canMove = (evt == InteractionEvents.EndInteraction);
+    private void SetCanMove(InteractionEvents evt)
+    {
+        _canMove = (evt == InteractionEvents.EndInteraction);
+        if (_canMove)
+        {
+            _spideySense.Play();
+            var emission = _spideySense.emission;
+            emission.enabled = false;
+        }
+        else _spideySense.Pause();
+    }
 
     private void ScaleSprite()
     {
@@ -80,15 +93,56 @@ public class MovementController : MonoBehaviour
         if (Mathf.Abs(movement.x) > 0.05f)
         {
             var direction = Mathf.Sign(movement.x);
-            var srTransform = _sr.transform;
-            var localScale = srTransform.localScale;
-            srTransform.localScale = new Vector3(direction, 1, 1) * localScale.z;
+            _sr.flipX = direction < 0;
         }
-        
+
         var delta = Time.time - _lastFrameChange;
         if (delta < _frameTime) return;
 
         _lastFrameChange = Time.time;
         _sr.sprite = _walkCycle[++_animFrame % _walkCycle.Count];
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (!col.CompareTag("InteractionTrigger")) return;
+
+        var trigger = col.GetComponent<InteractionTrigger>();
+        
+        var emission = _spideySense.emission;
+        if (!trigger.CanInteract || trigger.HasInteracted)
+        {
+            emission.enabled = false;
+            return;
+        }
+        
+        emission.enabled = true;
+    }
+
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (!col.CompareTag("InteractionTrigger")) return;
+
+        var trigger = col.GetComponent<InteractionTrigger>();
+        
+        var emission = _spideySense.emission;
+        if (!trigger.CanInteract || trigger.HasInteracted)
+        {
+            emission.enabled = false;
+            return;
+        }
+        
+        emission.enabled = true;
+    }
+    
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (!col.CompareTag("InteractionTrigger")) return;
+
+        var trigger = col.GetComponent<InteractionTrigger>();
+        if (!trigger.CanInteract) return;
+        
+        var emission = _spideySense.emission;
+        emission.enabled = false;
     }
 }

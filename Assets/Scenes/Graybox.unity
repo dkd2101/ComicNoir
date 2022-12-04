@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 435158460}
   m_Layer: 0
   m_Name: BankStatement
-  m_TagString: Untagged
+  m_TagString: InteractionTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -551,7 +551,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.26}
+  m_Offset: {x: 0, y: 0.02}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -562,7 +562,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.12, y: 0.6}
+  m_Size: {x: 0.75, y: 0.44}
   m_EdgeRadius: 0
 --- !u!212 &435158459
 SpriteRenderer:
@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 620871308}
   m_Layer: 0
   m_Name: PhotoOfFriends
-  m_TagString: Untagged
+  m_TagString: InteractionTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -717,7 +717,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4508917, y: 1.51}
+  m_Size: {x: 0.52, y: 0.99}
   m_EdgeRadius: 0
 --- !u!212 &620871311
 SpriteRenderer:
@@ -820,7 +820,7 @@ GameObject:
   - component: {fileID: 721778250}
   m_Layer: 0
   m_Name: Lady Sprite
-  m_TagString: Untagged
+  m_TagString: InteractionTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -923,7 +923,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.31}
+  m_Offset: {x: 0, y: 0.44}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -934,7 +934,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.02, y: 0.53}
+  m_Size: {x: 0.73, y: 0.06}
   m_EdgeRadius: 0
 --- !u!1 &807960821
 GameObject:
@@ -951,7 +951,7 @@ GameObject:
   - component: {fileID: 807960826}
   m_Layer: 0
   m_Name: BrokenGlassDoor
-  m_TagString: Untagged
+  m_TagString: InteractionTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1013,7 +1013,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.65035397}
+  m_Size: {x: 0.7, y: 0.56}
   m_EdgeRadius: 0
 --- !u!212 &807960825
 SpriteRenderer:
@@ -1318,7 +1318,7 @@ GameObject:
   - component: {fileID: 1054984499}
   m_Layer: 0
   m_Name: GlassShard
-  m_TagString: Untagged
+  m_TagString: InteractionTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1380,7 +1380,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.81, y: 1}
+  m_Size: {x: 0.79, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &1054984498
 SpriteRenderer:
@@ -1462,7 +1462,7 @@ GameObject:
   - component: {fileID: 1080896535}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: InteractionTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2053,7 +2053,7 @@ GameObject:
   - component: {fileID: 1551692751}
   m_Layer: 0
   m_Name: Book
-  m_TagString: Untagged
+  m_TagString: InteractionTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2116,7 +2116,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.08}
+  m_Offset: {x: 0, y: 1.19}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2127,7 +2127,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4508917, y: 1.51}
+  m_Size: {x: 0.72, y: 0.67}
   m_EdgeRadius: 0
 --- !u!212 &1551692754
 SpriteRenderer:
@@ -2519,7 +2519,7 @@ GameObject:
   - component: {fileID: 2040211349}
   m_Layer: 0
   m_Name: Diary
-  m_TagString: Untagged
+  m_TagString: InteractionTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2593,7 +2593,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.19, y: 0.83}
+  m_Size: {x: 0.26, y: 0.69}
   m_EdgeRadius: 0
 --- !u!212 &2040211352
 SpriteRenderer:
@@ -2672,7 +2672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3486586015059090138, guid: 34790f2c250055447b42bd409377ef08, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.11
       objectReference: {fileID: 0}
     - target: {fileID: 3486586015059090138, guid: 34790f2c250055447b42bd409377ef08, type: 3}
       propertyPath: m_LocalRotation.w
