@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,17 +6,15 @@ using UnityEngine.Events;
 
 public class LineConnect : MonoBehaviour
 {
-    public Transform startingPoint;
+    public Evidence startingPoint;
 
-    private LineRenderer drawer;
-
-    private bool dragMode;
-
-    public static readonly UnityEvent<Transform> selectItem = new UnityEvent<Transform>();
+    public static readonly UnityEvent<Evidence> selectItem = new UnityEvent<Evidence>();
 
     [SerializeField] private LineRenderer connectionPreview;
 
     [SerializeField] private LineRendererController _connectionPrefab;
+
+    [SerializeField] private bool _createLineModeActive = false;
     
     private Vector3 MousePosition {
         get {
@@ -32,42 +31,24 @@ public class LineConnect : MonoBehaviour
 
         if (connectionPreview == null) connectionPreview = GetComponent<LineRenderer>();
         
-        drawer = this.gameObject.GetComponent<LineRenderer>();
-        
-        drawer.SetWidth(0.05F, 0.05F);
-        
-        drawer.SetVertexCount(2);
-
-        this.startingPoint = null;
+        connectionPreview.positionCount = 2;
     }
 
-    public void OnMouseDown()
-    {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        
-        //SelectItem();
-    }
-
-    void Update()
+    private void Update()
     {
         if (startingPoint == null) return;
-        if (!dragMode)
-        {
-            connectionPreview.SetPosition(1, MousePosition);
-        } 
+        
+        connectionPreview.SetPosition(1, MousePosition);
     }
 
-    public void setDrag(bool drag)
+    private void SelectItem(Evidence item)
     {
-        this.dragMode = drag;
-    }
-
-    private void SelectItem(Transform item)
-    {
+        if (!_createLineModeActive) return;
+        
         if (startingPoint == null)
         {
             startingPoint = item;
-            connectionPreview.SetPosition(0, startingPoint.position);
+            connectionPreview.SetPosition(0, startingPoint.transform.position);
             connectionPreview.SetPosition(1, MousePosition);
             connectionPreview.enabled = true;
             return;
@@ -83,14 +64,35 @@ public class LineConnect : MonoBehaviour
         MakeConnection(startingPoint, item);
         
         startingPoint = null;
+        connectionPreview.enabled = false;
     }
 
-    private void MakeConnection(Transform item1, Transform item2)
+    private void MakeConnection(Evidence item1, Evidence item2)
     {
         // Connect the evidence pieces, create a new LineRenderer and hand off to one of the evidence pieces
         // either Have those evidence pieces update the positions, or create
+        if (item1.IsConnectedTo(item2))
+        {
+            item1.disconnectEvidence(item2);
+            return;
+        }
+        
         var lrController = Instantiate(_connectionPrefab, transform);
-        lrController.Initialize(item1, item2);
+        lrController.Initialize(item1.transform, item2.transform);
+
+        item1.connectEvidence(item2, lrController);
     }
-    
+
+    public void ToggleActive()
+    {
+        _createLineModeActive = !_createLineModeActive;
+        if (!_createLineModeActive) ClearLine();
+    }
+
+    private void ClearLine()
+    {
+        startingPoint = null;
+        connectionPreview.enabled = false;
+    }
+
 }

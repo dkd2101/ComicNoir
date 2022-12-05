@@ -7,7 +7,6 @@ public class DragDrop : MonoBehaviour
 {
     private bool isDrag = true;
     public UnityEvent onClick;
-    [SerializeField] private LineConnect lc;
 
     private bool flag;
     // Start is called before the first frame update
@@ -46,6 +45,5 @@ public class DragDrop : MonoBehaviour
     public void setDrag()
     {
         isDrag = !isDrag;
-        lc.setDrag(isDrag);
     }
 }
