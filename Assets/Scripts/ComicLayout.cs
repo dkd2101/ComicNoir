@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using DefaultNamespace;
 using Interactions;
 using TMPro;
 using Unity.VisualScripting;
@@ -25,7 +26,7 @@ public class ComicLayout : MonoBehaviour
     private List<ComicPanel> _strip;
     private int index = -1;
 
-    private List<Tuple<RectTransform, bool>> _children;
+    private List<IComicPanel> _children;
     private RectTransform leftImage, rightImage;
     private Alignment monologueAlignment;
 
@@ -48,13 +49,23 @@ public class ComicLayout : MonoBehaviour
         if (Input.GetButtonDown("Interact")) NextPanel(InteractionEvents.NextStep);
     }
 
+    private void LateUpdate()
+    {
+        if (Input.GetButton("Interact")) Respace();
+    }
+
+    private void OnValidate()
+    {
+        Respace();
+    }
+
     public void Initialize(ComicStrip strip)
     {
         _strip = new List<ComicPanel>(strip.panels);
         index = 0;
         monologueAlignment = Alignment.Center;
 
-        _children = new List<Tuple<RectTransform,bool>>();
+        _children = new List<IComicPanel>();
         
         Debug.Log(strip);
         
@@ -70,7 +81,8 @@ public class ComicLayout : MonoBehaviour
             switch (stripPanel.type)
             {
                 case ComicPanelType.Image:
-                    _children.Add(new Tuple<RectTransform, bool>(CreateImagePanel(stripPanel, isDialogue), true));
+                    var image = CreateImagePanel(stripPanel, isDialogue);
+                    _children.Add(image);
                     break;
 
                 case ComicPanelType.Text:
@@ -81,10 +93,10 @@ public class ComicLayout : MonoBehaviour
                     throw new ArgumentOutOfRangeException();
             }
 
-            _children[^1].Item1.gameObject.SetActive(false);
+            _children[^1].SetActive(false);
         };
 
-    private RectTransform CreateImagePanel(ComicPanel imagePanel, bool isDialogue)
+    private IComicPanel CreateImagePanel(ComicPanel imagePanel, bool isDialogue)
     {
         var i = Instantiate(panel, (RectTransform)transform);
         var frame = i.Frame;
@@ -112,7 +124,7 @@ public class ComicLayout : MonoBehaviour
         var scale = Mathf.Max(frameSize.x / imageSize.x, frameSize.y / imageSize.y);
         imageRect.transform.localScale = Vector3.one * scale;
         
-        return frameRect;
+        return i;
     }
 
     private void CreateTextPanel(ComicPanel textPanel, bool isDialogue)
@@ -127,13 +139,14 @@ public class ComicLayout : MonoBehaviour
         var text = Instantiate(textBox, transform);
         Debug.Log(text.name);
         text.Text = textPanel.text;
+        text.Chained = textPanel.chain;
 
         var rectTransform = text.rectTransform;
         var layoutSize = new Vector2(((RectTransform)transform).rect.size.x, 0) * (isDialogue ? 0.5f : NoDialogueScale);
         
-        var pos = rectTransform.anchoredPosition;
-        var rect = rectTransform.rect;
-        var size = rect.size;
+        var rect = text.rect;
+        var size = rect.size * 0.01f;
+        Debug.Log(size);
             
         var halfSize = size * 0.5f;
         var quarterSize = halfSize * 0.5f;
@@ -170,9 +183,9 @@ public class ComicLayout : MonoBehaviour
             NextMonologueAlignment();
         }
         
-        if (textPanel.chain) rectTransform.SetParent(_children[^1].Item1);
+        if (textPanel.chain) rectTransform.SetParent(_children[^1].GetRectTransform());
         
-        _children.Add(new Tuple<RectTransform, bool>(rectTransform, !textPanel.chain));
+        _children.Add(text);
     }
     
     private void NextMonologueAlignment() => monologueAlignment = monologueAlignment switch {
@@ -187,7 +200,11 @@ public class ComicLayout : MonoBehaviour
         
         Debug.Log($"Spacing {children.Count()} of {_children.Count} children.");
         
-        float childrenHeight = children.Aggregate(0f, (soFar, child) => soFar + child.rect.height);
+        float childrenHeight = children.Aggregate(0f, (soFar, child) =>
+        {
+            //var scale = child.Item4 ? 0.01f : 1f;
+            return soFar + child.GetHeight();
+        });
         float totalHeight = childrenHeight + spacing * (children.Count() - 1);
         float halfTotal = totalHeight * 0.5f;
 
@@ -195,13 +212,18 @@ public class ComicLayout : MonoBehaviour
         foreach (var child in children)
         {
             // Debug.Log(child.gameObject.name);
-            var rect = child.rect;
-            var y = halfTotal - soFar - rect.height * 0.5f;
+            var rectTransform = child.GetRectTransform();
+            var rectHeight = child.GetHeight();
+            // if (child.Item4) rectHeight *= 0.01f;
+            
+            var y = halfTotal - soFar - rectHeight * 0.5f;
             // Debug.Log(y);
-            child.anchoredPosition = new Vector2(child.anchoredPosition.x, y);
+            rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, y);
             // Debug.Log(child.rect);
-            soFar += rect.height + spacing;
+            soFar += rectHeight + spacing;
         }
+
+        for (int ii = 0; ii < index; ++ii) _children[ii].SetActive(true);
     }
 
     private void NextPanel(InteractionEvents evt)
@@ -213,13 +235,13 @@ public class ComicLayout : MonoBehaviour
             return;
         }
         
-        _children[index].Item1.gameObject.SetActive(true);
-        if (_children[index++].Item2) Respace();
+        // _children[index].SetActive(true);
+        if (!_children[index++].IsChained()) Respace();
+        
     }
 
-    private IEnumerable<RectTransform> GetActiveChildren() => _children
-        .Where(child => child.Item1.gameObject.activeSelf && child.Item2)
-        .Select(child => child.Item1);
+    private IEnumerable<IComicPanel> GetActiveChildren() => _children
+        .Where((child, _index) => _index < index &&!child.IsChained());
 
     public void Clear()
     {

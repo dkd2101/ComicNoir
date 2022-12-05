@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ComicTextBox : MonoBehaviour
+public class ComicTextBox : MonoBehaviour, IComicPanel
 {
     [SerializeField] private TMP_Text _text;
+    [SerializeField] private LayoutElement _layout;
+    [SerializeField] private VerticalLayoutGroup _layoutGroup;
     
     public string Text
     {
@@ -15,7 +18,10 @@ public class ComicTextBox : MonoBehaviour
         set => _text.text = value;
     }
 
+    public bool Chained { get; set; }
+    
     public RectTransform rectTransform => (RectTransform)transform;
+    public Rect rect => rectTransform.rect; //((RectTransform)_layout.transform).rect;
     private RectTransform parent => (RectTransform)transform.parent;
 
     private ComicPanel _textPanel;
@@ -27,12 +33,9 @@ public class ComicTextBox : MonoBehaviour
             _textPanel = value;
             Text = _textPanel.text;
 
-            var pos = rectTransform.anchoredPosition;
-            var rect = rectTransform.rect;
-            var size = rect.size;
             var parentSize = parent.rect.size;
             
-            var halfSize = rect.center;
+            var halfSize = rect.center * 0.01f;
             var offset = halfSize * 0.5f;
             if (_textPanel.chain)
             {
@@ -52,7 +55,30 @@ public class ComicTextBox : MonoBehaviour
                     ComicTextType.Monologue or _ => rectTransform.anchoredPosition,
                 };
             }
+
+            SetPreferredHeight();
         }
     }
 
+    private void OnValidate() => SetPreferredHeight();
+
+    private void OnGUI() => SetPreferredHeight();
+
+    private void SetPreferredHeight()
+    {
+        _layout.preferredHeight = _text.preferredHeight + _layoutGroup.padding.vertical;
+    }
+
+    public RectTransform GetRectTransform() => rectTransform;
+
+    public float GetHeight() => rect.height * 0.01f;
+
+    public bool IsChained() => Chained;
+
+    public void SetActive(bool active)
+    {
+        SetPreferredHeight();
+        gameObject.SetActive(active);
+    }
+    public bool IsActive() => gameObject.activeSelf;
 }

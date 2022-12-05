@@ -169,7 +169,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9057598479061112351}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -204,8 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac11f23d7f3dfe04891ea348572d29a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spacing: -0.832
+  spacing: -0.15
   panel: {fileID: 2844529550822709270, guid: 4255d189fb9e9334c960891922665c47, type: 3}
-  monologueBox: {fileID: 949083301128230117, guid: 777b72683e95957479d3582ffc7dc87c, type: 3}
-  mcDialogueBox: {fileID: 949083301128230117, guid: f462964bfefb75249884e2fc3f8c2b59, type: 3}
-  npcDialogueBox: {fileID: 949083301128230117, guid: 0dc6fc4a8f38a9c4183b0a4c5fc64122, type: 3}
+  monologueBox: {fileID: 6984414062281557900, guid: f0030aa047ef6374cbf772801c7ce7f7, type: 3}
+  mcDialogueBox: {fileID: 6984414062281557900, guid: 1d441a4cbfaeb014db434e26de3c10bd, type: 3}
+  npcDialogueBox: {fileID: 6984414062281557900, guid: ccd5ec64e4c2e10429bc1680c9489fa8, type: 3}
