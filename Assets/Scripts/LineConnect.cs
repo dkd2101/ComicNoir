@@ -9,6 +9,8 @@ public class LineConnect : MonoBehaviour
 
     private LineRenderer drawer;
 
+    private bool dragMode;
+
     public static readonly UnityEvent<Transform> selectItem = new UnityEvent<Transform>();
 
     [SerializeField] private LineRenderer connectionPreview;
@@ -30,19 +32,34 @@ public class LineConnect : MonoBehaviour
 
         if (connectionPreview == null) connectionPreview = GetComponent<LineRenderer>();
         
-        drawer = this.gameObject.AddComponent<LineRenderer>();
+        drawer = this.gameObject.GetComponent<LineRenderer>();
         
         drawer.SetWidth(0.05F, 0.05F);
         
         drawer.SetVertexCount(2);
+
+        this.startingPoint = null;
     }
 
+    public void OnMouseDown()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        
+        //SelectItem();
+    }
 
-    void UpdateLines()
+    void Update()
     {
         if (startingPoint == null) return;
-        
-        connectionPreview.SetPosition(1, MousePosition);
+        if (!dragMode)
+        {
+            connectionPreview.SetPosition(1, MousePosition);
+        } 
+    }
+
+    public void setDrag(bool drag)
+    {
+        this.dragMode = drag;
     }
 
     private void SelectItem(Transform item)

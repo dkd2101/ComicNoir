@@ -6,13 +6,6 @@ public class Evidence : MonoBehaviour
 {
     [SerializeField] private EvidenceSO evidence;
 
-
-    // Update is called once per frame
-    void Update()
-    {
-         
-    }
-
     public void connectEvidence(EvidenceSO evidence)
     {
         this.evidence.connected_evidence.Add(evidence);
