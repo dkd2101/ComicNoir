@@ -51,12 +51,9 @@ public class ComicLayout : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (index == -1) return;
+        
         if (Input.GetButton("Interact")) Respace();
-    }
-
-    private void OnValidate()
-    {
-        Respace();
     }
 
     public void Initialize(ComicStrip strip)
@@ -99,8 +96,7 @@ public class ComicLayout : MonoBehaviour
     private IComicPanel CreateImagePanel(ComicPanel imagePanel, bool isDialogue)
     {
         var i = Instantiate(panel, (RectTransform)transform);
-        var frame = i.Frame;
-        var frameRect = frame.rectTransform;
+        var spacerRect = i.GetRectTransform();
         var image = i.Panel;
         var imageRect = image.rectTransform;
 
@@ -111,18 +107,36 @@ public class ComicLayout : MonoBehaviour
             Alignment.Right => new Vector2(isDialogue ? 1 : 0.5f + scaling, 0.5f),
             _ => throw new ArgumentOutOfRangeException()
         };
-        frameRect.anchorMin = frameRect.anchorMax = anchor;
-        frameRect.pivot = anchor;
-        frameRect.anchoredPosition = Vector2.zero;
+        spacerRect.anchorMin = spacerRect.anchorMax = anchor;
+        spacerRect.pivot = anchor;
+        spacerRect.anchoredPosition = Vector2.zero;
+        
+        
+        var spacerSize = spacerRect.rect.size;
 
+        var frame = i.Frame;
+        var frameRect = frame.rectTransform;
+        frame.sprite = imagePanel.frame;
+        frame.SetNativeSize();
+        image.preserveAspect = true;
+        var frameBorder = frame.sprite.border;
+        var frameSize = frameRect.rect.size - new Vector2(frameBorder.x + frameBorder.z, frameBorder.y + frameBorder.w);
+        frameRect.transform.localScale = Vector3.one * (spacerSize.x / frameSize.x);
+        
+        Vector2 sizeDelta = frameRect.sizeDelta;
+        sizeDelta *= frame.pixelsPerUnit;
+        Vector2 pixelPivot = frame.sprite.pivot;
+        Vector2 percentPivot = new Vector2(pixelPivot.x / sizeDelta.x, pixelPivot.y / sizeDelta.y);
+        frameRect.pivot = percentPivot;
+        
         image.sprite = imagePanel.image;
         image.SetNativeSize();
         image.preserveAspect = true;
-
-        var frameSize = frameRect.rect.size;
         var imageSize = imageRect.rect.size;
-        var scale = Mathf.Max(frameSize.x / imageSize.x, frameSize.y / imageSize.y);
+        var scale = Mathf.Max(spacerSize.x / imageSize.x, spacerSize.y / imageSize.y);
         imageRect.transform.localScale = Vector3.one * scale;
+
+        frameRect.anchoredPosition = imageRect.rect.height * 0.5f * scale * Vector2.down;
         
         return i;
     }
@@ -196,7 +210,10 @@ public class ComicLayout : MonoBehaviour
     
     private void Respace()
     {
-        var children = GetActiveChildren();
+        if (index < 0 || index > _children.Count) return;
+        
+        Debug.Log($"Spacing {_children.Count} {index} children.");
+        var children = _children.GetRange(0, index).Where(child => !child.IsChained());
         
         Debug.Log($"Spacing {children.Count()} of {_children.Count} children.");
         
@@ -236,20 +253,17 @@ public class ComicLayout : MonoBehaviour
         }
         
         // _children[index].SetActive(true);
-        if (!_children[index++].IsChained()) Respace();
+        if (++index < _children.Count && !_children[index].IsChained()) Respace();
         
     }
-
-    private IEnumerable<IComicPanel> GetActiveChildren() => _children
-        .Where((child, _index) => _index < index &&!child.IsChained());
 
     public void Clear()
     {
         Debug.Log("clearing...");
+        index = -1;
         _strip.Clear();
         foreach (Transform child in transform)
             Destroy(child.gameObject);
         _children.Clear();
-        index = -1;
     }
 }

@@ -14,30 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDialogue: 0
   panels:
+  - type: 1
+    alignment: 0
+    frame: {fileID: 0}
+    image: {fileID: 0}
+    textType: 0
+    text: Hmm... that doesn't look good.
+    chain: 0
   - type: 0
     alignment: 1
-    frame: 0
+    frame: {fileID: 1233905318, guid: 6f172c1f90053ff48a27f66a72557b07, type: 3}
     image: {fileID: 2083335853, guid: d04d334b19c314d9497df0ce49bdd210, type: 3}
     textType: 0
     text: Should look for Murder Weapons too...
     chain: 0
   - type: 1
     alignment: 0
-    frame: 0
-    image: {fileID: 0}
-    textType: 0
-    text: Hmm... that doesn't look good.
-    chain: 0
-  - type: 1
-    alignment: 0
-    frame: 0
+    frame: {fileID: 0}
     image: {fileID: 0}
     textType: 0
     text: Gotta find potential motives...
     chain: 0
   - type: 1
     alignment: 0
-    frame: 0
+    frame: {fileID: 0}
     image: {fileID: 0}
     textType: 0
     text: Should look for Murder Weapons too...

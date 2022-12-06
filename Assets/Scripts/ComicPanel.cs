@@ -9,7 +9,7 @@ public struct ComicPanel
     public ComicPanelType type;
 
     public Alignment alignment;
-    public ImageFrame frame;
+    public Sprite frame;
     public Sprite image;
     
     public ComicTextType textType;

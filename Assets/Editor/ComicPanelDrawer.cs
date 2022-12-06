@@ -54,7 +54,7 @@ namespace Editor
                     
                     var frameProp = property.FindPropertyRelative("frame");
                     var frameRect = new Rect(position.x, yPos, position.width, EditorGUI.GetPropertyHeight(frameProp));
-                    frameProp.enumValueIndex = (int)(object) EditorGUI.EnumPopup(frameRect, frameProp.displayName, (ImageFrame)frameProp.enumValueIndex);
+                    frameProp.objectReferenceValue = EditorGUI.ObjectField(frameRect, frameProp.displayName, frameProp.objectReferenceValue, typeof(Sprite), false);
                     yPos += EditorGUI.GetPropertyHeight(frameProp) + Spacing * 2;
                     break;
 

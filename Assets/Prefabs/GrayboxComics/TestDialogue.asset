@@ -14,51 +14,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDialogue: 1
   panels:
-  - type: 0
-    alignment: 0
-    frame: 0
-    image: {fileID: 21300000, guid: daa6196b50be0d94eacf11912962b619, type: 3}
-    textType: 1
-    text: Well, you must have suspected something was up!
-    chain: 0
   - type: 1
     alignment: 0
-    frame: 0
+    frame: {fileID: 0}
     image: {fileID: 0}
     textType: 1
     text: So, what happened?
     chain: 1
   - type: 0
+    alignment: 0
+    frame: {fileID: -284969481, guid: 4f08a89955c00ae45864800e6ccd5c63, type: 3}
+    image: {fileID: 1554434737, guid: e52f402ded3768340b2601fe89ac4861, type: 3}
+    textType: 1
+    text: Well, you must have suspected something was up!
+    chain: 0
+  - type: 0
     alignment: 2
-    frame: 0
+    frame: {fileID: 1233905318, guid: 6f172c1f90053ff48a27f66a72557b07, type: 3}
     image: {fileID: 443890368, guid: 9ccfd5a1da2b6d942bbde912a78999bb, type: 3}
     textType: 1
     text: Well, you must have suspected something was up!
     chain: 0
   - type: 1
     alignment: 0
-    frame: 0
+    frame: {fileID: 0}
     image: {fileID: 0}
     textType: 2
     text: Honestly... I have no idea.
     chain: 1
   - type: 1
     alignment: 0
-    frame: 0
+    frame: {fileID: 0}
     image: {fileID: 0}
     textType: 0
     text: She must be lying.
     chain: 0
   - type: 1
     alignment: 0
-    frame: 0
+    frame: {fileID: 0}
     image: {fileID: 0}
     textType: 1
     text: Well, you must have suspected something was up!
     chain: 0
   - type: 1
     alignment: 0
-    frame: 0
+    frame: {fileID: 0}
     image: {fileID: 0}
     textType: 0
     text: He was missing for over a week, something's off.
