@@ -32,5 +32,14 @@ namespace Interactions
         Diary,
         [InspectorName("Prop/Photo of Friends")]
         FriendsPhoto,
+        
+        
+        // Dialogue
+        [InspectorName("Dialogue/Test")]
+        Test,
+        
+        // SceneChange
+        [InspectorName("SceneFlow/Open Door")]
+        OpenDoor,
     }
 }

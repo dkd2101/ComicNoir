@@ -8,8 +8,8 @@ public struct ComicPanel
 {
     public ComicPanelType type;
 
-    public AlignImage alignment;
-    public ImageFrame frame;
+    public Alignment alignment;
+    public Sprite frame;
     public Sprite image;
     
     public ComicTextType textType;
@@ -23,7 +23,7 @@ public enum ComicPanelType
     Text
 }
 
-public enum AlignImage
+public enum Alignment
 {
     Left,
     Center,

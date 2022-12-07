@@ -33,6 +33,7 @@ namespace Interactions
         public bool MeetsPrereqs => !HasPrereqs || (HasPrereqs && _fulfilledPrereqs.All(MetPrereq));
 
         public bool CanInteract => canInteract && (multiInteract || !_hasInteracted) && MeetsPrereqs;
+        public bool HasInteracted => _hasInteracted;
         
 #if UNITY_EDITOR
         private void Awake()
