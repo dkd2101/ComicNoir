@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class DragDrop : MonoBehaviour
 {
-    private bool isDrag = true;
+    private static bool isDrag = true;
     public UnityEvent onClick;
 
     private bool flag;
@@ -42,7 +42,7 @@ public class DragDrop : MonoBehaviour
         }
     }
 
-    public void setDrag()
+    public static void setDrag()
     {
         isDrag = !isDrag;
     }
