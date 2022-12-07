@@ -699,7 +699,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.7169812, g: 0.5602016, b: 0.41598436, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -804,8 +804,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5716635267567261197, guid: 4387382a637854059bb805349fddf8ae, type: 3}
       propertyPath: m_Name
-      value: TestEvidence (1)
+      value: AutopsyReport
       objectReference: {fileID: 0}
+    - target: {fileID: 5716635267567261198, guid: 4387382a637854059bb805349fddf8ae, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 6fc0e4c585b7d4ce6bed7293ec7b0126, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4387382a637854059bb805349fddf8ae, type: 3}
 --- !u!114 &2040179874 stripped
@@ -876,7 +880,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5716635267567261197, guid: 4387382a637854059bb805349fddf8ae, type: 3}
       propertyPath: m_Name
-      value: TestEvidence
+      value: AudioLog
       objectReference: {fileID: 0}
+    - target: {fileID: 5716635267567261198, guid: 4387382a637854059bb805349fddf8ae, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c1e690a6f4524b75958e4cc9b48e947, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4387382a637854059bb805349fddf8ae, type: 3}

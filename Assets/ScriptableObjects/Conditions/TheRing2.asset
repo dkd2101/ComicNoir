@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a19d549f0dd34f02a8d5a35a11fc2a3, type: 3}
+  m_Name: TheRing2
+  m_EditorClassIdentifier: 
+  necesssarry_connections:
+  - {fileID: 11400000, guid: 6ec56060beae14bf4af173e00b8c3a82, type: 2}
+  - {fileID: 11400000, guid: 3af2de5ab55cb40c6bcdf8e12399ea58, type: 2}
