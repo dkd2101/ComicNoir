@@ -21,9 +21,6 @@ namespace Interactions
         public List<InteractionEvents> Prereqs = new List<InteractionEvents>();
         private Dictionary<InteractionEvents, bool> _fulfilledPrereqs = new Dictionary<InteractionEvents, bool>();
 
-        private SceneTransitioner _sceneTransition;
-        public string _sceneName;
-
         private ComicLayoutManager _comicLayoutManager;
         public ComicStrip interactComic;
 
@@ -62,7 +59,6 @@ namespace Interactions
             canInteract = MeetsPrereqs;
 
             _comicLayoutManager = ComicLayoutManager.Instance;
-            _sceneTransition = SceneTransitioner.Instance;
         }
 
         private void Update()
@@ -80,11 +76,6 @@ namespace Interactions
             canInteract = false;
             _hasInteracted = true;
             _evtChannel.Emit(triggerType);
-
-            if(_sceneName != null)
-            {
-                _sceneTransition.loadNewScene(_sceneName);
-            }
             
             if (interactComic == null) return;
             

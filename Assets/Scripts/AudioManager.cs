@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
                 clip = discovery;
                 break;
             
-            case InteractionEvents.OpenDoor:
+            case InteractionEvents.ToCrimeScene:
                 clip = doorSfx;
                 break;
                 

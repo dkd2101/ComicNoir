@@ -435,7 +435,6 @@ MonoBehaviour:
   canInteract: 0
   multiInteract: 1
   Prereqs: 03000000
-  _sceneName: 
   interactComic: {fileID: 11400000, guid: 0b64e03dc7ff61e47be65c0f93d5fe41, type: 2}
   debug: 0
 --- !u!61 &435158458
@@ -684,7 +683,6 @@ MonoBehaviour:
   canInteract: 0
   multiInteract: 0
   Prereqs: 
-  _sceneName: 
   interactComic: {fileID: 11400000, guid: 7cb0f45ede4acb74daac354bd1cf9858, type: 2}
   debug: 0
 --- !u!61 &620871310
@@ -830,6 +828,14 @@ PrefabInstance:
       propertyPath: _sceneName
       value: Outside
       objectReference: {fileID: 0}
+    - target: {fileID: 7413735756896392419, guid: 132f930862a7a4fc6b7c371dd7c708bc, type: 3}
+      propertyPath: triggerType
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7413735756896392419, guid: 132f930862a7a4fc6b7c371dd7c708bc, type: 3}
+      propertyPath: Prereqs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7413735756896392420, guid: 132f930862a7a4fc6b7c371dd7c708bc, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -928,7 +934,6 @@ MonoBehaviour:
   canInteract: 0
   multiInteract: 0
   Prereqs: 
-  _sceneName: 
   interactComic: {fileID: 11400000, guid: bc7fd0fb376bbfe488474680cf5ad67c, type: 2}
   debug: 0
 --- !u!61 &807960824
@@ -1527,7 +1532,6 @@ MonoBehaviour:
   canInteract: 0
   multiInteract: 1
   Prereqs: 0500000003000000
-  _sceneName: 
   interactComic: {fileID: 11400000, guid: 41300c1ea587f5b4db3ac5a19b20d6a8, type: 2}
   debug: 0
 --- !u!61 &1054984497
@@ -1708,7 +1712,6 @@ MonoBehaviour:
   canInteract: 0
   multiInteract: 1
   Prereqs: 
-  _sceneName: 
   interactComic: {fileID: 11400000, guid: 79aeaac607ce93149a6aeebfd0e0a6ef, type: 2}
   debug: 0
 --- !u!212 &1080896534
@@ -2412,7 +2415,6 @@ MonoBehaviour:
   canInteract: 0
   multiInteract: 0
   Prereqs: 
-  _sceneName: 
   interactComic: {fileID: 11400000, guid: e6f35a29c23debf499d7a9e643cedf9d, type: 2}
   debug: 0
 --- !u!61 &1551692753
@@ -2883,7 +2885,6 @@ MonoBehaviour:
   canInteract: 0
   multiInteract: 1
   Prereqs: 03000000
-  _sceneName: 
   interactComic: {fileID: 11400000, guid: 690231e1b9047ec42bcc43f34ffcd24d, type: 2}
   debug: 0
 --- !u!61 &2040211351

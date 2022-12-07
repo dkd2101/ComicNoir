@@ -39,7 +39,9 @@ namespace Interactions
         Test,
         
         // SceneChange
-        [InspectorName("SceneFlow/Open Door")]
-        OpenDoor,
+        [InspectorName("SceneFlow/Go to Crime Scene")]
+        ToCrimeScene,
+        [InspectorName("SceneFlow/Go to Evidence")]
+        ToEvidence,
     }
 }
