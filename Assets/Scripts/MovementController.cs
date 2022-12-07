@@ -112,7 +112,6 @@ public class MovementController : MonoBehaviour
         var emission = _spideySense.emission;
         if (!trigger.CanInteract || trigger.HasInteracted)
         {
-            emission.enabled = false;
             return;
         }
         
@@ -128,7 +127,6 @@ public class MovementController : MonoBehaviour
         var emission = _spideySense.emission;
         if (!trigger.CanInteract || trigger.HasInteracted)
         {
-            emission.enabled = false;
             return;
         }
         

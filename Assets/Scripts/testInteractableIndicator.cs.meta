@@ -3,7 +3,10 @@ guid: d69a73d779416e74bae62b30cc20f874
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _interactIcon: {instanceID: 0}
+  - questionIcon: {fileID: 541425748, guid: 56fc83bd3d86aab409e5670e6d5aa76b, type: 3}
+  - spyglassIcon: {fileID: 2147476075, guid: 56fc83bd3d86aab409e5670e6d5aa76b, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

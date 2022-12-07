@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b71e1739f824955bd708fd36736603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2.5
+  moveSpeed: 1.5
   rb: {fileID: 3486586015059090141}
   _playerScale:
     serializedVersion: 2
@@ -56,20 +56,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0.99905396
-      inSlope: -1.5238653
-      outSlope: -1.5238653
+      inSlope: -1.0901527
+      outSlope: -1.0901527
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.045833334
+      outWeight: 0.058091287
     - serializedVersion: 3
-      time: 1.0291126
-      value: 0.32163236
-      inSlope: -0.16066733
-      outSlope: -0.16066733
+      time: 1.0334005
+      value: 0.3743065
+      inSlope: -0.22854339
+      outSlope: -0.22854339
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.22083336
+      inWeight: 0.17916667
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -97,8 +97,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: -0.51}
+  m_Size: {x: 0.8, y: 1}
   m_Direction: 0
 --- !u!50 &3486586015059090141
 Rigidbody2D:
