@@ -17,7 +17,7 @@ MonoBehaviour:
   - type: 0
     alignment: 1
     frame: {fileID: 1233905318, guid: 6f172c1f90053ff48a27f66a72557b07, type: 3}
-    image: {fileID: 2083335853, guid: d04d334b19c314d9497df0ce49bdd210, type: 3}
+    image: {fileID: 21300000, guid: b93a0c7144d73b540a00dae9bec22f83, type: 3}
     textType: 0
     text: Should look for Murder Weapons too...
     chain: 0

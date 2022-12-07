@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
                 clip = breakthrough;
                 break;
             
+            case InteractionEvents.BowlingBall:
             case InteractionEvents.GlassShard:
             case InteractionEvents.BankStatement:
                 clip = discovery;
@@ -39,7 +40,6 @@ public class AudioManager : MonoBehaviour
                 break;
                 
             case InteractionEvents.BrokenGlassDoor:
-            case InteractionEvents.BowlingBall:
             case InteractionEvents.BowlingBallStand:
             case InteractionEvents.Book:
             case InteractionEvents.Diary:
