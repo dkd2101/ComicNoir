@@ -12,25 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76040e5205747974894363e9cb0ce3ba, type: 3}
   m_Name: ComicStrip
   m_EditorClassIdentifier: 
+  isDialogue: 0
   panels:
-  - type: 0
-    alignment: 0
-    frame: 0
-    image: {fileID: 0}
-    textType: 0
-    text: 
-    chain: 0
-  - type: 0
-    alignment: 2
-    frame: 0
-    image: {fileID: 0}
-    textType: 0
-    text: 
-    chain: 0
   - type: 1
     alignment: 0
-    frame: 0
+    frame: {fileID: 0}
     image: {fileID: 0}
     textType: 0
     text: Hellooo
+    chain: 0
+  - type: 0
+    alignment: 2
+    frame: {fileID: 0}
+    image: {fileID: 0}
+    textType: 0
+    text: 
+    chain: 0
+  - type: 0
+    alignment: 0
+    frame: {fileID: 0}
+    image: {fileID: 0}
+    textType: 0
+    text: 
     chain: 0

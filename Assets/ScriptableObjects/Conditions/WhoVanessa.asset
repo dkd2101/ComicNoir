@@ -15,3 +15,4 @@ MonoBehaviour:
   necesssarry_connections:
   - {fileID: 11400000, guid: 1a090ef0a80364217b179bb5e1d39dcc, type: 2}
   - {fileID: 11400000, guid: 24a2f2362810b43f99a6de2d05a6e14d, type: 2}
+  conclusions: {fileID: 11400000, guid: cc285213b496f4593a7a266f7fdf5eb0, type: 2}

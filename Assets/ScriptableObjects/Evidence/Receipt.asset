@@ -15,5 +15,8 @@ MonoBehaviour:
   object_sprite: {fileID: 0}
   evidence_name: Receipt
   description: 
-  connected_evidence: []
-  conclusions: []
+  connected_evidence:
+  - {fileID: 11400000}
+  - {fileID: 11400000, guid: 1a090ef0a80364217b179bb5e1d39dcc, type: 2}
+  conclusions:
+  - {fileID: 11400000, guid: 4ae3d8f397c95402a9b100e1d75100ba, type: 2}

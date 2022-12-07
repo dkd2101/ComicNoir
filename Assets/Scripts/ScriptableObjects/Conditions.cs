@@ -6,8 +6,8 @@ using UnityEngine;
 public class Conditions : ScriptableObject
 {
     [SerializeField]
-    List<EvidenceSO> necesssarry_connections;
+    public List<EvidenceSO> necesssarry_connections;
 
-    //[SerializeField]
-    //ComicStrip conclusions;
+    [SerializeField]
+    public ComicStrip conclusions;
 }

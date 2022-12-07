@@ -15,5 +15,13 @@ MonoBehaviour:
   object_sprite: {fileID: 0}
   evidence_name: Bank Statement
   description: 
-  connected_evidence: []
-  conclusions: []
+  connected_evidence:
+  - {fileID: 11400000}
+  - {fileID: 11400000, guid: 24a2f2362810b43f99a6de2d05a6e14d, type: 2}
+  conclusions:
+  - {fileID: 11400000, guid: 4ae3d8f397c95402a9b100e1d75100ba, type: 2}
+  - {fileID: 11400000, guid: 9d070a3bba5274ba58ed211925fbbd99, type: 2}
+  - {fileID: 11400000, guid: b46a7659cc53842c9962a27a18c6cb21, type: 2}
+  - {fileID: 11400000, guid: 8e131ee8f3fae45feb0e8220a3d945ae, type: 2}
+  - {fileID: 11400000, guid: 83d93b01e32434bff8f2daac5c5332bc, type: 2}
+  - {fileID: 11400000, guid: 7f41bd1f41a6a4f8ca55cdfb6bef10bb, type: 2}

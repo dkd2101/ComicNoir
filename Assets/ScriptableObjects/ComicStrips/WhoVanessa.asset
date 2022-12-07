@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76040e5205747974894363e9cb0ce3ba, type: 3}
-  m_Name: BrokenGlassDoorInteract
+  m_Name: WhoVanessa
   m_EditorClassIdentifier: 
   isDialogue: 0
   panels:
@@ -19,19 +19,19 @@ MonoBehaviour:
     frame: {fileID: 0}
     image: {fileID: 0}
     textType: 0
-    text: Looks shattered as well...
+    text: ...an cofee with...whisky? Who in the world...
     chain: 0
   - type: 1
     alignment: 0
     frame: {fileID: 0}
     image: {fileID: 0}
     textType: 0
-    text: Seems like there was a break in.
-    chain: 0
+    text: ....a name on the receipt says
+    chain: 1
   - type: 1
     alignment: 0
     frame: {fileID: 0}
     image: {fileID: 0}
     textType: 0
-    text: This glass door is ajar...
+    text: Vanessa
     chain: 0

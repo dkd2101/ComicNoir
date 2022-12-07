@@ -81,6 +81,9 @@ public class LineConnect : MonoBehaviour
         lrController.Initialize(item1.transform, item2.transform);
 
         item1.connectEvidence(item2, lrController);
+
+        item1.meetConditions();
+        item2.meetConditions();
     }
 
     public void ToggleActive()
