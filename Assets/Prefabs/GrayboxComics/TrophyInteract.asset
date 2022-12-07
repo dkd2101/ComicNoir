@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76040e5205747974894363e9cb0ce3ba, type: 3}
-  m_Name: GlassShardInteract
+  m_Name: TrophyInteract
   m_EditorClassIdentifier: 
   isDialogue: 0
   panels:
   - type: 0
     alignment: 1
     frame: {fileID: -625842502, guid: 9dbf7000ae140664eb9bccc0c133d82e, type: 3}
-    image: {fileID: 21300000, guid: f9018664299160f4cb6fc725d3680a0a, type: 3}
+    image: {fileID: 21300000, guid: ad620bc554f69b94c9aafea21231f734, type: 3}
     textType: 0
-    text: Could it it be the murder weapon?
+    text: Should look for Murder Weapons too...
     chain: 0
   - type: 1
     alignment: 0
     frame: {fileID: 0}
     image: {fileID: 0}
     textType: 0
-    text: Glass shards from the door...
+    text: Seems like this fell from the shelf...
     chain: 0
   - type: 1
     alignment: 0
     frame: {fileID: 0}
     image: {fileID: 0}
     textType: 0
-    text: Could it it be the murder weapon?
+    text: Maybe that was the noise we heard.
     chain: 0

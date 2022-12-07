@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioSource ambientSource;
 
-    [SerializeField] private AudioClip doorSfx, discovery, breakthrough;
+    [SerializeField] private AudioClip doorSfx, discovery, breakthrough, thud;
 
     private void Start()
     {
@@ -30,7 +30,12 @@ public class AudioManager : MonoBehaviour
                 break;
             
             case InteractionEvents.ToCrimeScene:
+            case InteractionEvents.ToEvidence:
                 clip = doorSfx;
+                break;
+            
+            case InteractionEvents.OnEnterCrimeScene:
+                clip = thud;
                 break;
                 
             case InteractionEvents.BrokenGlassDoor:

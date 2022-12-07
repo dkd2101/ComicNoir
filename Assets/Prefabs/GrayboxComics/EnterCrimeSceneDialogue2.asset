@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76040e5205747974894363e9cb0ce3ba, type: 3}
-  m_Name: TestDialogue
+  m_Name: EnterCrimeSceneDialogue2
   m_EditorClassIdentifier: 
   isDialogue: 1
   panels:
@@ -26,7 +26,7 @@ MonoBehaviour:
     frame: {fileID: 0}
     image: {fileID: 0}
     textType: 2
-    text: Is this where we were headed? What is it?
+    text: "<b>What in god\u2019s name was that?!</b>"
     chain: 1
   - type: 0
     alignment: 0
@@ -40,13 +40,47 @@ MonoBehaviour:
     frame: {fileID: 0}
     image: {fileID: 0}
     textType: 1
-    text: "This is where your husband was last seen. Multiple people have corroborated
-      it, if he\u2019s anywhere, he\u2019ll be here."
+    text: "Don\u2019t move!"
+    chain: 1
+  - type: 1
+    alignment: 0
+    frame: {fileID: 0}
+    image: {fileID: 0}
+    textType: 2
+    text: You caught me, I was about to walk directly towards it...
+    chain: 0
+  - type: 1
+    alignment: 0
+    frame: {fileID: 0}
+    image: {fileID: 0}
+    textType: 1
+    text: "First rule is\u2014"
     chain: 0
   - type: 1
     alignment: 0
     frame: {fileID: 0}
     image: {fileID: 0}
     textType: 2
-    text: I see. I hope we find him soon.
+    text: "\u2014to not get in your way. I know, already."
+    chain: 0
+  - type: 1
+    alignment: 0
+    frame: {fileID: 0}
+    image: {fileID: 0}
+    textType: 1
+    text: "You think I\u2019d know? Gotta go see, first."
+    chain: 0
+  - type: 1
+    alignment: 0
+    frame: {fileID: 0}
+    image: {fileID: 0}
+    textType: 2
+    text: It was more of a rhetorical question.
+    chain: 0
+  - type: 1
+    alignment: 0
+    frame: {fileID: 0}
+    image: {fileID: 0}
+    textType: 1
+    text: "Didn\u2019t sound like one."
     chain: 0

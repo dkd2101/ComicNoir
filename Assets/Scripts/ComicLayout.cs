@@ -245,6 +245,7 @@ public class ComicLayout : MonoBehaviour
 
     private void NextPanel(InteractionEvents evt)
     {
+        Debug.Log(evt);
         if (evt != InteractionEvents.NextStep) return;
         if (index >= _children.Count)
         {
@@ -252,8 +253,10 @@ public class ComicLayout : MonoBehaviour
             return;
         }
         
+        Debug.Log("activate");
         // _children[index].SetActive(true);
-        if (++index < _children.Count && !_children[index].IsChained()) Respace();
+        ++index;
+        if (index < _children.Count && !_children[index-1].IsChained()) Respace();
         
     }
 

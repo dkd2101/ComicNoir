@@ -73,13 +73,7 @@ namespace Interactions
             
             if (!multiInteract && _hasInteracted) return;
             
-            canInteract = false;
-            _hasInteracted = true;
-            _evtChannel.Emit(triggerType);
-            
-            if (interactComic == null) return;
-            
-            _comicLayoutManager.BeginNewStrip(transform.position, interactComic);
+            BeginInteract();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -107,6 +101,17 @@ namespace Interactions
             if (_fulfilledPrereqs.ContainsKey(intEvent)) _fulfilledPrereqs[intEvent] = true;
             _isInteracting = (intEvent == InteractionEvents.EndInteraction);
             if (intEvent == InteractionEvents.EndInteraction && MeetsPrereqs) canInteract = true;
+        }
+        
+        public void BeginInteract()
+        {
+            canInteract = false;
+            _hasInteracted = true;
+            _evtChannel.Emit(triggerType);
+            
+            if (interactComic == null) return;
+            
+            _comicLayoutManager.BeginNewStrip(transform.position, interactComic);
         }
     }
 }

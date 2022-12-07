@@ -37,6 +37,8 @@ namespace Interactions
         // Dialogue
         [InspectorName("Dialogue/Test")]
         Test,
+        [InspectorName("Dialogue/On Enter Crime Scene")]
+        OnEnterCrimeScene,
         
         // SceneChange
         [InspectorName("SceneFlow/Go to Crime Scene")]

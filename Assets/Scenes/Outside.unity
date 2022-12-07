@@ -123,31 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &24226877 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5294238636905561877, guid: 1d2f3fbf77ecb7947ae018a93d6517c9, type: 3}
-  m_PrefabInstance: {fileID: 120557796}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &24226878
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 24226877}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6078435c93c2a4f1b8fe6e2de35c87e2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &120557796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1166,7 +1141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013200c9faeb4acc933eec38e4268211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerType: 13
+  triggerType: 14
   canInteract: 0
   multiInteract: 0
   Prereqs: 
@@ -1960,15 +1935,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3486586015059090138, guid: 34790f2c250055447b42bd409377ef08, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.39
+      value: 1.57
       objectReference: {fileID: 0}
     - target: {fileID: 3486586015059090138, guid: 34790f2c250055447b42bd409377ef08, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.39
+      value: 1.57
       objectReference: {fileID: 0}
     - target: {fileID: 3486586015059090138, guid: 34790f2c250055447b42bd409377ef08, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.39
+      value: 1.57
       objectReference: {fileID: 0}
     - target: {fileID: 3486586015059090138, guid: 34790f2c250055447b42bd409377ef08, type: 3}
       propertyPath: m_LocalPosition.x

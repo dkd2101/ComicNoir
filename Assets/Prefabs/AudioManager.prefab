@@ -51,6 +51,7 @@ MonoBehaviour:
   doorSfx: {fileID: 8300000, guid: a88618dc0104cda4c8725e67edab5944, type: 3}
   discovery: {fileID: 8300000, guid: a1ec540a029cffb4a9529056a59b6f6f, type: 3}
   breakthrough: {fileID: 8300000, guid: 389c9e4886f102c4cb424aa2953e6cc0, type: 3}
+  thud: {fileID: 8300000, guid: c52abc7c7bd5d914a914750ce1f40fc1, type: 3}
 --- !u!82 &5851834626240963840
 AudioSource:
   m_ObjectHideFlags: 0
