@@ -1,5 +1,5 @@
 # ComicNoir
-A detetive game inspired by old noir films with UI inspired by american comic books and comic book panelling.
+A detetive game inspired by old noir films with UI inspired by american comic books and comic book panelling published on itch.io [here](https://dylan-dino.itch.io/comic-chevalier)
 
 ## Why'd we make this?
 This was a project made as a part of our Game Interface Design class. Make connections between pieces od evidence you find in the crime and talk to suspects and witnesses to determine who murdered the victim. Find evidence at the crime scene to use to make conclusions. Enjoy dialogue and art inspired by american commic books with dialogue on screen that uses classic comic book style and art.
